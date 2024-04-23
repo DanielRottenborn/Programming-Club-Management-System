@@ -1,3 +1,7 @@
+
+#ifndef STRUCTS
+#define STRUCTS
+
 #define STUDENT_ID_LEN 8
 #define TUTOR_ID_LEN 3
 #define ADMIN_ID_LEN 3
@@ -24,7 +28,7 @@ struct User {
 };
 
 //DEFAULT_ADMIN constant is used when there are no users in the system
-const struct User DEFAULT_ADMIN = {
+static struct User DEFAULT_ADMIN = {
 	.user_ID = "a00",
 	.password = "00000000",
 	.username = "Default Admin",
@@ -75,3 +79,4 @@ struct AccessArray {
 	int count;
 };
 
+#endif //STRUCTS
