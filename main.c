@@ -1,10 +1,11 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include "structs.h"
-#include "functions.h"
+#if defined(_MSC_VER)
+	#define _CRT_SECURE_NO_WARNINGS
+#endif
+
+#include "./structs.h"
+#include "./functions.h"
 
 int main() {
-	printf("<---------------------------------------->\n");
-
 
 	struct User currentUser = NO_USER;
 
@@ -16,6 +17,7 @@ int main() {
 	void* tempSessionData = NULL;
 	void* tempAccessData = NULL;
 
+	printf("<---------------------------------------->\n");
 
 	int ret_code = LoadStructsFromFile("./data/users.dat", &tempUserData, &userArray.size, &userArray.count, sizeof(struct User));
 	if (ret_code < 0) {

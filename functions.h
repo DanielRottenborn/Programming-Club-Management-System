@@ -1,43 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
+#include "./structs.h"
 
 //converts string to lowercase
 void StrToLower(char* string) {
-	for (int i = 0; i < strlen(string); i++) {
+	for (size_t i = 0; i < strlen(string); i++) {
 		string[i] = tolower(string[i]);
 	}
 }
 
 
 //sscanf wrapper for single-word inputs, returns -1 if input would exceed maximum length
-int InputWord(char* dest, int max_length) {
+int InputWord(char* dest, size_t max_length) {
 	char input_buffer[2048];
 	char format[5];
 
-	sprintf(format, "%%%ds", max_length);
+	sprintf(format, "%%%zus", max_length);
 
 	fgets(input_buffer, 2048, stdin);
 	if (strlen(input_buffer) - 1 > max_length) { return -1; }
 
-	int ret_code = sscanf(input_buffer, format, dest);
-	return 0;
+	return sscanf(input_buffer, format, dest);
 }
 
 
 //sscanf wrapper for string inputs, returns -1 if input would exceed maximum length
-int InputString(char* dest, int max_length) {
+int InputString(char* dest, size_t max_length) {
 	char input_buffer[2048];
 	char format[8];
 
-	sprintf(format, "%%%d[^\n]", max_length);
+	sprintf(format, "%%%zu[^\n]", max_length);
 
 	fgets(input_buffer, 2048, stdin);
 	if (strlen(input_buffer) - 1 > max_length) { return -1; }
 
-	int ret_code = sscanf(input_buffer, format, dest);
-	return 0;
+	return sscanf(input_buffer, format, dest);
 }
 
 
